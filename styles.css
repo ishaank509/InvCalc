@@ -18,6 +18,14 @@
   z-index: 999;
 }
 
+.screener {
+  background:#000000
+}
+
+.screener_general {
+  background-color: #8f0eff;
+}
+
 .navbar__container {
   display: flex;
   justify-content: space-between;
@@ -90,6 +98,7 @@
   color: #fff;
   transition: all 0.3s ease;
 }
+
 
 .navbar__links:hover {
   color: #9518fc;
@@ -267,6 +276,8 @@
     font-size: 40px;
   }
 }
+
+
 
 /* About Section */
 .main {
