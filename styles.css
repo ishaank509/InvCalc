@@ -7,7 +7,7 @@
 }
 
 .navbar {
-  background: #131313;
+  background: black;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -16,14 +16,6 @@
   position: sticky;
   top: 0;
   z-index: 999;
-README.md}
-
-.screener {
-  background:#000000;
-}
-
-.screener_general {
-  background-color: #8f0eff;
 }
 
 .navbar__container {
@@ -714,3 +706,141 @@ README.md}
     width: 100%;
   }
 }
+
+.insider-trading{
+  background-color:black;
+}
+
+.screener{
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 100%;
+  padding: 20px;
+  z-index: 1;
+}
+
+  body {
+    background: #ee0979; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+    color: #FF6A00;
+    font-family: Arial, sans-serif;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #FF6A00;
+  }
+
+  th {
+    background-color: #8A2BE2;
+  }
+
+  input[type='text'],
+  input[type='number'],
+  select {
+    background-color: #171717;
+    color: #808080;
+    border: none;
+    padding: 6px 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input[type='text']::placeholder,
+  input[type='number']::placeholder,
+  select::placeholder {
+    color: #808080;
+  }
+
+  input[type='submit'] {
+    background-color: #8A2BE2;
+    color: #FF6A00;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  input[type='submit']:hover {
+    background-color: #FF6A00;
+    color: #8A2BE2;
+  }
+
+  legend {
+    color: #FF6A00;
+    font-weight: bold;
+    padding: 0 4px;
+  }
+
+  fieldset {
+    border: 1px solid #FF6A00;
+    padding: 8px;
+    margin-bottom: 16px;
+  }
+
+  .screener_general {
+    margin-bottom: 24px;
+   
+  }
+
+  .is-datepick {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .screener_general input::-webkit-inner-spin-button,
+  .screener_general input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  /* Checkboxes styling */
+  input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #171717;
+    border: 2px solid #808080;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+
+  input[type='checkbox']:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #FFF;
+    border-radius: 50%;
+  }
+
+  .clear{
+    font-display: none;
+  }
+
+  input[type='checkbox']:checked {
+    background-color: #FF6A00;
+    border-color: #FF6A00;
+  }
+
