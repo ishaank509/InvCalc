@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InvCalc</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+  </head>
+
+  <body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+      <div class="navbar__container">
+        <a href="index.html" id="navbar__logo">InvCalc</a>
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="index.html" class="navbar__links" id="home-page">Home</a>
+          </li>
+          <li class="navbar__item">
+            <a href="insider.html" class="navbar__links" id="about-page">Insider Trading</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#services" class="navbar__links" id="services-page"
+              >Stock Data</a
+            >
+          </li>
+          <li class="navbar__btn">
+            <a href="#sign-up" class="button" id="signup">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <form action="/screener" method="GET">
+          <table cellpadding="2" cellspacing="2">
+          <tbody><tr><td>
+          
+          <fieldset class = "screener_general">
+          <legend><strong>General</strong></legend>
+          <table cellpadding="4" cellspacing="4" border="0">
+          <tbody><tr><td align="right">Tickers</td><td><input type="text" name="s" placeholder="Symbols or CIKs" value="" maxlength="20000" size="16"></td></tr>
+          <tr><td align="right">Insider</td><td><input type="text" name="o" placeholder="Insider Name or CIK" value="" maxlength="80" size="16"></td></tr>
+          <tr><td align="right">Sh Price $</td><td>
+          <input type="number" name="pl" placeholder="Min" value="" min="0" max="9999" step="1" maxlength="4" size="3">
+          <input type="number" name="ph" placeholder="Max" value="" min="0" max="9999" step="1" maxlength="4" size="3">
+          </td></tr>
+          <tr><td align="right">Lqdty M$</td><td>
+          <input type="number" name="ll" placeholder="Min" value="" min="0" max="999" step="0.1" maxlength="3" size="3">
+          <input type="number" name="lh" placeholder="Max" value="" min="0" max="999" step="1" maxlength="3" size="3">
+          </td></tr>
+          
+          </tbody></table>
+          </fieldset>
+          
+          <fieldset>
+          <legend><strong>Date</strong></legend>
+          <table cellpadding="4" cellspacing="4" border="0">
+          <tbody><tr><td align="right">Filing Date</td><td>
+          <select name="fd" id="dropdownFD">
+            <option value="0">All dates</option>
+            <option value="-1">Custom</option>
+            <option value="1">Latest day</option>
+            <option value="3">Last 3 days</option>
+            <option value="7">Last 1 week</option>
+            <option value="14">Last 2 weeks</option>
+            <option value="30">Last 1 month</option>
+            <option value="60">Last 2 months</option>
+            <option value="90">Last 3 months</option>
+            <option value="180">Last 6 months</option>
+            <option value="365">Last 1 year</option>
+            <option value="730" selected="">Last 2 years</option>
+            <option value="1461">Last 4 years</option>
+          </select>
+          </td></tr>
+          <tr><td colspan="2">
+          &nbsp;&nbsp;
+          <input type="text" id="textboxFD" name="fdr" placeholder="Filing Date Range" size="27" value="" class="is-datepick">
+          </td></tr>
+          
+          <script type="text/javascript">
+              var textboxFD = document.getElementById('textboxFD');
+              var dropdownFD = document.getElementById('dropdownFD');
+          
+              dropdownFD.onchange = function(){
+                    if (this.value!=-1) textboxFD.value = '';
+              }
+              textboxFD.onfocus = function(){
+                    if (this.value!='') dropdownFD.value = '-1';
+              }
+          </script>
+          
+          <tr><td align="right">Trade Date</td><td>
+          <select name="td" id="dropdownTD">
+            <option value="0" selected="">All dates</option>
+            <option value="-1">Custom</option>
+            <option value="1">Latest day</option>
+            <option value="3">Last 3 days</option>
+            <option value="7">Last 1 week</option>
+            <option value="14">Last 2 weeks</option>
+            <option value="30">Last 1 month</option>
+            <option value="60">Last 2 months</option>
+            <option value="90">Last 3 months</option>
+            <option value="180">Last 6 months</option>
+            <option value="365">Last 1 year</option>
+            <option value="730">Last 2 years</option>
+            <option value="1461">Last 4 years</option>
+          </select>
+          </td></tr>
+          <tr><td colspan="2">
+          &nbsp;&nbsp;<input type="text" id="textboxTD" name="tdr" placeholder="Trade Date Range" size="27" value="" class="is-datepick">
+          </td></tr>
+          <!-- 
+          <script type="text/javascript">
+              var textboxTD = document.getElementById('textboxTD');
+              var dropdownTD = document.getElementById('dropdownTD');
+          
+              dropdownTD.onchange = function(){
+                    if (this.value!=-1) textboxTD.value = '';
+              }
+              textboxTD.onfocus = function(){
+                    if (this.value!='') dropdownTD.value = '-1';
+              }
+          </script>
+
+          -->
+          <tr><td align="right">Filing Delay</td><td>
+          <input type="number" name="fdlyl" placeholder="Min" value="" min="0" max="99" step="1" maxlength="1" size="1">
+          <input type="number" name="fdlyh" placeholder="Max" value="" min="0" max="9999" step="1" maxlength="1" size="1">
+          </td></tr>
+          <tr><td align="right">N Days Ago</td><td><input type="number" name="daysago" value="" min="0" max="9999" step="1" maxlength="4" size="4">
+          </td></tr>
+          
+          </tbody></table>
+          </fieldset>
+          
+          </td>
+          <td>
+          <table>
+          
+          <tbody><tr><td colspan="2">
+          <fieldset>
+          <legend><strong>Transaction Filing</strong></legend>
+          <table><tbody><tr><td>
+          <input type="checkbox" name="xp" value="1" checked="">&nbsp;P&nbsp;-&nbsp;Purchase<br><input type="checkbox" name="xs" value="1" checked="">&nbsp;S&nbsp;-&nbsp;Sale<br><input type="checkbox" name="xa" value="1">&nbsp;A&nbsp;-&nbsp;Grant<br><input type="checkbox" name="xd" value="1">&nbsp;D&nbsp;-&nbsp;Sale to Iss<br><input type="checkbox" name="xg" value="1">&nbsp;G&nbsp;-&nbsp;Gift<br></td><td><input type="checkbox" name="xf" value="1">&nbsp;F&nbsp;-&nbsp;Tax<br><input type="checkbox" name="xm" value="1">&nbsp;M&nbsp;-&nbsp;Option Ex<br><input type="checkbox" name="xx" value="1">&nbsp;X&nbsp;-&nbsp;Option Ex<br><input type="checkbox" name="xc" value="1">&nbsp;C&nbsp;-&nbsp;Cnv Deriv<br><input type="checkbox" name="xw" value="1">&nbsp;W&nbsp;-&nbsp;Inherited<br></td></tr>
+          <tr><td>
+          <input type="checkbox" name="excludeDerivRelated" value="1"> No deriv
+          </td>
+          <td>
+          <input type="checkbox" name="tmult" value="1"> Multiple Days
+          </td></tr>
+          
+          <tr><td align="right">Traded K$</td><td>
+          <input type="number" name="vl" placeholder="Min" value="" min="0" max="2147483" step="5" maxlength="4" size="4">
+          <input type="number" name="vh" placeholder="Max" value="" min="0" max="2147483" step="5" maxlength="4" size="4">
+          </td></tr>
+          <tr><td align="right">Own Chg %</td><td>
+          <input type="number" name="ocl" placeholder="Min" value="" min="-100" max="999" step="1" maxlength="3" size="3">
+          <input type="number" name="och" placeholder="Max" value="" min="-100" max="999" step="1" maxlength="3" size="3">
+          </td></tr>
+          
+          </tbody></table>
+          </fieldset>
+          </td></tr>
+          <tr><td colspan="2">
+          
+          <fieldset style="width: 220px;">
+          <legend><strong>Industry</strong></legend>
+          <table>
+          <tbody><tr>
+          <td style="text-align: left;">
+          <select name="sic1" id="sector" onchange="setSubsectors();">
+          <option value="-1" selected="">All Sectors (except Funds)</option>
+          <option value="1">Agriculture, Forestry, Fish</option>
+          <option value="10">Mining</option>
+          <option value="15">Construction</option>
+          <option value="20">Manufacturing</option>
+          <option value="40">Transportation &amp; Utilities</option>
+          <option value="50">Wholesale Trade</option>
+          <option value="52">Retail Trade</option>
+          <option value="60">Financial</option>
+          <option value="70">Services</option>
+          <option value="0">Closed-End Funds</option>
+          </select>
+          </td>
+          </tr><tr>
+          <td style="text-align: left;">
+          <select name="sic2" id="subsector" onchange="setIndustries();" disabled="">
+          <option value="0">All Subsectors</option></select>
+          </td>
+          </tr><tr>
+          <td style="text-align: left;">
+          <select name="sic3" id="industry" onchange="setSicMinMax();" disabled="">
+          <option value="0">All Industries</option></select>
+          </td>
+          </tr>
+          
+          <tr><td>
+          <input type="hidden" name="sicl" id="sicMin" placeholder="Min" value="100" min="0" max="9999" step="1" maxlength="4" size="4">
+          <input type="hidden" name="sich" id="sicMax" placeholder="Max" value="9999" min="0" max="9999" step="1" maxlength="4" size="4">
+          </td></tr>
+          
+          </tbody></table>
+          </fieldset>
+          
+          
+          </td></tr>
+          
+          </tbody></table>
+          </td>
+          <td>
+          <table cellpadding="4" cellspacing="4" border="0">
+          
+          <tbody><tr><td>
+          <fieldset>
+          <legend><strong>Insider&nbsp;Title&nbsp;&nbsp;</strong></legend>
+          <!--
+          <script>
+          function isoffCheck() {
+              var o = document.getElementById("isofficer");
+              document.getElementById("iscob").checked = o.checked;
+              document.getElementById("isceo").checked = o.checked;
+              document.getElementById("ispres").checked = o.checked;
+              document.getElementById("iscoo").checked = o.checked;
+              document.getElementById("iscfo").checked = o.checked;
+              document.getElementById("isgc").checked = o.checked;
+              document.getElementById("isvp").checked = o.checked;
+          }
+          function isoffClear() {
+              document.getElementById("isofficer").checked = false;
+          }
+          </script>
+          -->
+          &nbsp;<input type="checkbox" name="isofficer" id="isofficer" value="1" onclick="isoffCheck()"> Officer<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="iscob" id="iscob" value="1" onclick="isoffClear()"> COB<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="isceo" id="isceo" value="1" onclick="isoffClear()"> CEO<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="ispres" id="ispres" value="1" onclick="isoffClear()"> Pres<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="iscoo" id="iscoo" value="1" onclick="isoffClear()"> COO<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="iscfo" id="iscfo" value="1" onclick="isoffClear()"> CFO<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="isgc" id="isgc" value="1" onclick="isoffClear()"> GC<br>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" name="isvp" id="isvp" value="1" onclick="isoffClear()"> VP<br>
+          &nbsp;<input type="checkbox" name="isdirector" value="1"> Director<br>
+          &nbsp;<input type="checkbox" name="istenpercent" value="1"> 10%own<br>
+          &nbsp;<input type="checkbox" name="isother" value="1"> Other
+          </fieldset>
+          </td></tr>
+          
+          </tbody></table>
+          </td>
+          <td>
+          
+          <table>
+          
+          <tbody><tr><td align="right">Group by</td><td>
+          <!-- 
+          <script type="text/javascript">
+          function toggleGrp2() {
+            var sel = document.getElementById("grpsel").value;
+            document.getElementById("grp2").disabled = (sel==0) ? true: false;
+            document.getElementById("grp2set").style.visibility = (sel==0) ? 'hidden': 'visible';
+          }
+          </script>
+          -->
+          <select id="grpsel" name="grp" onchange="toggleGrp2();">
+            <option value="0" selected="">Filing</option>
+            <option value="2">Company</option>
+          </select>
+          </td></tr>
+          </tbody></table>
+          
+          <div id="grp2set" style="visibility:hidden">
+          <fieldset>
+          <legend><strong>Company Totals</strong></legend>
+          <table cellpadding="4" cellspacing="4" border="0">
+          
+          <tbody><tr><td align="right">Filings</td><td>
+          <input type="number" name="nfl" id="grp2" placeholder="Min" value="" min="0" max="99" step="1" maxlength="2" size="2">
+          <input type="number" name="nfh" id="grp2" placeholder="Max" value="" min="0" max="99" step="1" maxlength="2" size="2">
+          </td></tr>
+          <tr><td align="right">Insiders</td><td>
+          <input type="number" name="nil" id="grp2" placeholder="Min" value="" min="0" max="9" step="1" maxlength="1" size="1">
+          <input type="number" name="nih" id="grp2" placeholder="Max" value="" min="0" max="9" step="1" maxlength="1" size="1">
+          </td></tr>
+          <tr><td align="right">Officers</td><td>
+          <input type="number" name="nol" id="grp2" placeholder="Min" value="" min="0" max="9" step="1" maxlength="1" size="1">
+          <input type="number" name="noh" id="grp2" placeholder="Max" value="" min="0" max="9" step="1" maxlength="1" size="1">
+          </td></tr>
+          <tr><td align="right">Traded K$</td><td>
+          <input type="number" name="v2l" id="grp2" placeholder="Min" value="" min="0" max="2147483" step="5" maxlength="4" size="4">
+          <input type="number" name="v2h" id="grp2" placeholder="Max" value="" min="0" max="2147483" step="5" maxlength="4" size="4">
+          </td></tr>
+          <tr><td align="right">Own Chg %</td><td>
+          <input type="number" name="oc2l" id="grp2" placeholder="Min" value="" min="-100" max="999" step="1" maxlength="3" size="3">
+          <input type="number" name="oc2h" id="grp2" placeholder="Max" value="" min="-100" max="999" step="1" maxlength="3" size="3">
+          </td></tr>
+          
+          </tbody></table>
+          </fieldset>
+          </div>
+          
+          <table>
+          <tbody><tr><td align="right">Sort by</td><td>
+          <select name="sortcol">
+            <option value="0" selected="">Filing Date</option>
+            <option value="1">Trade Date</option>
+            <option value="2">Ticker Symbol</option>
+            <option value="8">Trade Value</option>
+          </select>
+          </td></tr>
+          <tr><td align="right">Max Results</td><td><input type="number" name="cnt" value="100" min="100" max="1000" step="100" maxlength="5" size="5"></td></tr>
+          <tr><td align="right">Page</td><td><input type="number" name="page" value="1" min="1" max="99" step="1" maxlength="2" size="2"></td></tr>
+          <tr><td>
+          </td><td><input type="submit" value="Search">
+          &nbsp;&nbsp;&nbsp;<a href="/screener">clear</a>
+          </td></tr>
+          
+          </tbody></table>
+          </td>
+          <td valign="top">
+          </td></tr>
+          </tbody></table>
+          </form>
+      </div>
+  </body>
+</html>
